@@ -16,3 +16,4 @@ class employee extends Model
             'poste'  ,
     ];
 }
+ 

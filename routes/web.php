@@ -45,10 +45,12 @@ Route::get('/', [EmployeeController::class, 'index'])->name('Home');
 
 Route::get('/Detail/{employee}', [EmployeeController::class, 'show'])->name('Detail');
 
-// Route::get('/Detail/{employee}', [EmployeeController::class, 'show'])->name('Detail');
 
 
 
-//  Route::put('/Update',[EmployeeController::class,'update'])->name('Update');
+Route::get('/Update/{employee}', [EmployeeController::class, 'edit'])->name('Edit');
+  Route::put('/Update/{employee}',[EmployeeController::class,'update'])->name('Update');
 
-// Route::get('/',[EmployeeController::class,'index'])->name('Home');
+  Route::delete('/delete/{employee}', [EmployeeController::class, 'destroy'])->name('Delete');
+
+

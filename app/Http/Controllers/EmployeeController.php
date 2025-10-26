@@ -19,24 +19,6 @@ class EmployeeController extends Controller
     }
 
     
-        //  $post = post::all();
-        //  return view('home', ['post' =>$post  ]);
-    
-
-    /**
-     *  $posts = Post::all();
-       
-
-     * Show the form for creating a new resource.
-     */
-   
-
-    /**'name' ,
-            'prenom' ,
-            'email'  ,
-            'poste' 
-     * Store a newly created resource in storage.
-     */
        public function store(Request $request)
     {
         $infos = $request->validate([
@@ -52,18 +34,7 @@ class EmployeeController extends Controller
         
     }
 
-    //  public function store(Request $request)
-    // {
-    //      { $validated = $request->validate([
-    //         'title' => 'required',
-    //         'content' => 'required',
-    //         'status' => 'required',
-    //     'author' => 'required',
-    //     ]);
-    //     Post::create($validated);
-    //     return redirect()->route('home')->with('success', 'Employé ajouté avec succès.');
-    // }
-    // }
+    
 
     /**
      * Display the specified resource.
@@ -79,23 +50,24 @@ class EmployeeController extends Controller
      */
     public function edit(employee $employee)
     {
-        //
+         return view('update', ['emp' => $employee]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    //    public function update( Request $request,employee $employee)
-    // {
-    //       $infos = $request->validate([
-    //         'prenom' => ['required'],
-    //         'email' => ['required'],
-    //         'poste' => ['required'],
-    //     ]);
+       public function update( Request $request,employee $employee)
+    {
+           $infos = $request->validate([
+            'nom' => ['required'],
+            'prenom' => ['required'],
+           'email' => ['required'],
+             'poste' => ['required'],
+        ]);
 
-    //     $emp->update($infos);
-    //     return redirect()->route('Home');
-    // }
+         $employee->update($infos);
+         return redirect()->route('Home');
+     }
 
 
     /**
@@ -103,6 +75,7 @@ class EmployeeController extends Controller
      */
     public function destroy(employee $employee)
     {
-        //
+        $employee->delete();
+        return   redirect()->route('Home')->with('success', 'Employé supprimé avec succès !');
     }
 }
